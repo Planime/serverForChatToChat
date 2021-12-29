@@ -19,7 +19,7 @@ server.use((req, res, next) => {
     res.header("Access-Control-Allow-Methods", 'GET,POST,PUT,DELETE');
     res.header("Access-Control-Allow-Headers", 'Orgin,X-Requested-With,Content-Type,Accept,content-type,application/json')
     next()
-})
+});
 
 // Set port
 const port = process.env.PORT || "4444";
@@ -39,5 +39,5 @@ async function initApp() {
     }
 }
 
-initApp()
+initApp();
 
