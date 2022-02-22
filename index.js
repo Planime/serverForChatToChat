@@ -3,6 +3,8 @@ const server = express();
 const router = require("./routes");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const fileUpload = require("express-fileupload");
+const multer = require("multer");
 
 const DB_KEY = 'mongodb+srv://digtiar:Password1,@cluster0.jckrz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 
@@ -20,6 +22,19 @@ server.use((req, res, next) => {
     res.header("Access-Control-Allow-Headers", 'Orgin,X-Requested-With,Content-Type,Accept,content-type,application/json')
     next()
 });
+
+
+// server.use(fileUpload({
+//     useTempFiles : true,
+//     tempFileDir : '/tmp/'
+// }));
+
+server.use(multer({
+    dest: "./uploads",
+    rename: function (fieldname, filename) {
+        return filename;
+    },
+}).single('avatar'));
 
 // Set port
 const port = process.env.PORT || "4444";
